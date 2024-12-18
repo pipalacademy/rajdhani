@@ -4,12 +4,19 @@ Module to interact with the database.
 
 from . import placeholders
 from . import db_ops
+from sqlalchemy import create_engine, MetaData, Table, select, func
 
 db_ops.ensure_db()
 
 # config has 'db_uri' that can be used to connect to the database
 from . import config
 
+## uncomment the following code to enable sqlalchemy
+##
+# engine = create_engine(config.db_uri)
+# metadata = MetaData()
+# table_train = Table("train", metadata, autoload_with=engine)
+# table_station = Table("station", metadata, autoload_with=engine)
 
 def search_trains(
         from_station_code,
